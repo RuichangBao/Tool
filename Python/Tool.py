@@ -1,9 +1,10 @@
 import os
-import os.path
 import xlrd
+import pandas as pd
 
 inputPath = '../Excel'
 outputPath = '../Res'
+excelHeadCount = 4 #表头数据
 
 #模拟Main方法
 def Main():
@@ -33,16 +34,20 @@ def GetSheetFiles(path,sFileName):
     for sheetsName in sheetsNames:
         table = data.sheet_by_name(sheetsName)
         name = table.name
-        rowNum = table.nrows
-        colNum = table.ncols
-        print(name,rowNum,colNum)
-        for i in range(rowNum):
-            for j in range(colNum):
-                print(i,j,table.cell_value(i,j))
-
-    
-    
-    
+        rowNum = table.nrows    #行数
+        if rowNum<=excelHeadCount:
+            print("数据格式不正确："+sheetsName)
+            continue
+        #表格转csv
+        listData=[]
+        for i in range(excelHeadCount,rowNum):
+            rowData = table.row_values(i)
+            listData.append(rowData)
+       
+        csv=pd.DataFrame(data=listData)#数据有三列，列名分别为one,two,three
+        csvName = outputPath+"/"+name+".csv"
+        csv.to_csv(csvName,encoding='utf-8',index=False,header=False)
+        #生成C#类
     return
 
 
