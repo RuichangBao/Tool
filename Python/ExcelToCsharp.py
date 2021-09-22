@@ -4,7 +4,7 @@ import pandas as pd
 from enum import Enum
 
 inputPath = '../Excel'
-outputPath = '../Res'
+outputPath = '../CS'
 
 #模拟Main方法
 def Main():

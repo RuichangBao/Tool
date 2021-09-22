@@ -3,7 +3,7 @@ import xlrd
 import pandas as pd
 
 inputPath = '../Excel'
-outputPath = '../Res'
+outputPath = '../CSV'
 excelHeadCount = 4 #表头数据
 
 #模拟Main方法
@@ -39,12 +39,12 @@ def GetSheetFiles(path,sFileName):
             print("数据格式不正确："+sheetsName)
             continue
         #表格转csv
-        listData=[]
+        listDatas=[]
         for i in range(excelHeadCount,rowNum):
             rowData = table.row_values(i)
-            listData.append(rowData)
+            listDatas.append(rowData)
        
-        csv=pd.DataFrame(data=listData)#数据有三列，列名分别为one,two,three
+        csv=pd.DataFrame(data=listDatas)#数据有三列，列名分别为one,two,three
         csvName = outputPath+"/"+name+".csv"
         csv.to_csv(csvName,encoding='utf-8',index=False,header=False)
     return
@@ -52,4 +52,4 @@ def GetSheetFiles(path,sFileName):
 
 Main(); 
 
-print("Hello python")
+# pyinstaller -F ExcelToCSV.py  打包成exe文件
