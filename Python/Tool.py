@@ -48,6 +48,13 @@ def GetSheetFiles(path,sFileName):
         csvName = outputPath+"/"+name+".csv"
         csv.to_csv(csvName,encoding='utf-8',index=False,header=False)
         #生成C#类
+        cSharpName = outputPath+"/"+name+".cs"
+        fo = open(cSharpName, "w")
+        cSharpClass = "public class {0}\n{1}\n{2}".format(name,"{","}")
+        print(cSharpClass)
+        fo.write(cSharpClass)
+        # 关闭打开的文件
+        fo.close()
     return
 
 
