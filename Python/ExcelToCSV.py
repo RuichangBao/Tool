@@ -3,7 +3,7 @@ import xlrd
 import pandas as pd
 
 inputPath = '../Excel'
-outputPath = '../CSV'
+outputPath = '../UnityProject/Assets/Resources/csv'
 excelHeadCount = 4 #表头数据
 
 #模拟Main方法

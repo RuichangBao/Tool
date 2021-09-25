@@ -4,7 +4,7 @@ import pandas as pd
 from enum import Enum
 
 inputPath = '../Excel'
-outputPath = '../CS'
+outputPath = '../UnityProject/Assets/Ref'
 
 #模拟Main方法
 def Main():
@@ -42,7 +42,7 @@ def GetSheetFiles(path,sFileName):
         #生成C#类
         cSharpName = outputPath+"/"+name+".cs"
         fo = open(cSharpName, "w")
-        cSharpClass = "public class "+name+'\n{\n'
+        cSharpClass = "/*\n* 自动生成文件，请勿编辑\n*/\npublic class "+name+'\n{\n'
         listName = table.row_values(1)
         listType = table.row_values(2)
 
